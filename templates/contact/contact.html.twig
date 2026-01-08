@@ -4,5 +4,15 @@
 
 {% block body %}
     <h1>Contact</h1>
-    <p>Page de contact (à compléter)</p>
+
+    {% for flash in app.flashes('success') %}
+        <div class="alert alert-success">{{ flash }}</div>
+    {% endfor %}
+
+    {{ form_start(contactForm) }}
+        {{ form_row(contactForm.name) }}
+        {{ form_row(contactForm.email) }}
+        {{ form_row(contactForm.message) }}
+        <button class="btn">Envoyer</button>
+    {{ form_end(contactForm) }}
 {% endblock %}
