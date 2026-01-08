@@ -36,6 +36,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isVerified = false;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $resetToken = null;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $resetRequestedAt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -127,5 +133,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->isVerified = $isVerified;
 
         return $this;
+    }
+
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(?string $resetToken): static
+    {
+        $this->resetToken = $resetToken;
+
+        return $this;
+    }
+
+    public function getResetRequestedAt(): ?\DateTimeInterface
+    {
+        return $this->resetRequestedAt;
+    }
+
+    public function setResetRequestedAt(?\DateTimeInterface $dt): static
+    {
+        $this->resetRequestedAt = $dt;
+
+        return $this;
+    }
+
+    public function isPasswordRequestNonExpired(int $ttl): bool
+    {
+        if (null === $this->resetRequestedAt) {
+            return false;
+        }
+
+        return $this->resetRequestedAt->getTimestamp() + $ttl >= time();
     }
 }
