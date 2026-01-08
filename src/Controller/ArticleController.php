@@ -63,6 +63,49 @@ final class ArticleController extends AbstractController {
         ]);
     }
 
+    #[Route('/articles/{id}/edit', name: 'app_article_edit')]
+    public function edit($id, ArticleRepository $ar, Request $request, EntityManagerInterface $em): Response
+    {
+        $article = $ar->find($id);
+
+        if (empty($article)) {
+            throw new NotFoundHttpException;
+        }
+
+        $form = $this->createForm(\App\Form\ArticleType::class, $article);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($article);
+            $em->flush();
+
+            return $this->redirectToRoute('app_article_details', ['id' => $article->getId()]);
+        }
+
+        return $this->render('article/create.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/articles/{id}/delete', name: 'app_article_delete', methods: ['POST'])]
+    public function delete($id, ArticleRepository $ar, Request $request, EntityManagerInterface $em)
+    {
+        $article = $ar->find($id);
+
+        if (empty($article)) {
+            throw new NotFoundHttpException;
+        }
+
+        if (!$this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
+            return new Response('Invalid CSRF token', 400);
+        }
+
+        $em->remove($article);
+        $em->flush();
+
+        return $this->redirectToRoute('app_article_list');
+    }
+
     #[Route('/articles', name: 'app_article_list')]
     function list(ArticleRepository $ar): Response {
 
