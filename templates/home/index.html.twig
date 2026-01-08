@@ -1,20 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil - CourMaker{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Welcome to my {{ controller_name }}! </h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/xampp/htdocs/CourMaker/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>C:/xampp/htdocs/CourMaker/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
+    <section>
+        <h1>Bienvenue sur CourMaker</h1>
+        <p>Plateforme de démonstration Symfony avec authentification et CRUD.</p>
+        <p>
+            <a href="{{ path('app_article_list') }}">Voir les articles</a>
+            {% if app.user %}
+                — Bonjour, {{ app.user.email }}
+            {% endif %}
+        </p>
+    </section>
 {% endblock %}
