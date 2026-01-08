@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Routing\Attribute\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 final class ContactController extends AbstractController
 {
