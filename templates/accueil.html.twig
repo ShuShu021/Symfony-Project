@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Accueil</h1>
+
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi perspiciatis non numquam eaque ea, laboriosam explicabo. Quas iure sit perferendis natus quod aliquid earum nam eos, vel velit corrupti sequi?</p>
+
+    {% if nombre > 5 %}
+        <p>Le nombre est supérieur à 5</p>
+    {% else %}
+        <p>Le nombre est inférieur ou égal à 5</p>
+    {% endif %}
+
+    <p>Le nombre vaut {{ nombre }}</p>
+
+    <h2>Tous les nombres de 1 à {{ nombre }}</h2>
+
+    {% for n in 1..nombre %}
+        <p>{{ n }}</p>
+    {% endfor %}
+
+    <h2>Informations sur une personne</h2>
+
+    <p>Bonjour, {{ personne.prenom }} {{ personne.nom }}. Vous avez {{ personne.age }} ans.</p>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <p>Bonjour, ô mon maître adoré !</p>
+    {% endif %}
+    
+    {% if app.user %}
+        <p>Bonjour, {{ app.user.email }}</p>
+    {% endif %}
+    
+    {# Ceci est un commentaire. #}
+
+
+    <p>Clique connard : <a href="{{ path('app_article_list') }}">CLIQUE</a></p>
+
+    <p>Créer un formulaire : <a href="{{ path('app_article_create') }}">Créer un formulaire</a></p>
+
+</body>
+</html>
