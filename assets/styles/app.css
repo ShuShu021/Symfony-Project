@@ -7,66 +7,126 @@ body {
     background: linear-gradient(90deg, #004aad, #2b8cff);
     color: #fff;
     padding: 12px 16px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
-.site-header a { color: #fff; text-decoration: none; margin-right: 12px; }
+.site-header a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 12px;
+}
 
 /* Container */
-.container { max-width: 960px; margin: 24px auto; padding: 0 16px; }
+.container {
+    max-width: 960px;
+    margin: 24px auto;
+    padding: 0 16px;
+}
 
 /* Forms */
 form.contact-form {
     background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
     padding: 22px;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(15,23,42,0.08);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
     max-width: 720px;
     margin: 0 auto;
 }
 
-form.contact-form label { display:block; margin-bottom:8px; font-weight:600; color:#23303f }
+form.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #23303f;
+}
 form.contact-form input[type="text"],
 form.contact-form input[type="email"],
 form.contact-form textarea {
-    width:100%; padding:12px 14px; border:1px solid #e1e8f0; border-radius:10px; margin-bottom:14px; font-size:15px;
-    background:#fff; transition: box-shadow .18s ease, transform .06s ease, border-color .12s ease;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #e1e8f0;
+    border-radius: 10px;
+    margin-bottom: 14px;
+    font-size: 15px;
+    background: #fff;
+    transition: box-shadow 0.18s ease, transform 0.06s ease,
+        border-color 0.12s ease;
 }
 
-form.contact-form textarea { min-height:140px; resize:vertical }
+form.contact-form textarea {
+    min-height: 140px;
+    resize: vertical;
+}
 
 form.contact-form input[type="text"]:focus,
 form.contact-form input[type="email"]:focus,
 form.contact-form textarea:focus {
-    outline: none; border-color:#6aa7ff; box-shadow: 0 6px 18px rgba(43,140,255,0.12); transform: translateY(-1px);
+    outline: none;
+    border-color: #6aa7ff;
+    box-shadow: 0 6px 18px rgba(43, 140, 255, 0.12);
+    transform: translateY(-1px);
 }
 
 /* Buttons */
 .btn {
-    display:inline-block; padding:10px 14px; border-radius:10px; font-weight:700; cursor:pointer; border:none;
-    text-decoration:none; transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+    display: inline-block;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
 }
 .btn-primary {
-    background: linear-gradient(90deg,#2b8cff 0%, #1f6fe6 100%);
-    color:#fff; box-shadow: 0 8px 20px rgba(43,140,255,0.18);
+    background: linear-gradient(90deg, #2b8cff 0%, #1f6fe6 100%);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(43, 140, 255, 0.18);
 }
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(43,140,255,0.22) }
-.btn-secondary { background:#eef3ff; color:#2b3b4a }
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(43, 140, 255, 0.22);
+}
+.btn-secondary {
+    background: #eef3ff;
+    color: #2b3b4a;
+}
 
-.btn:active { transform: translateY(-1px); }
+.btn:active {
+    transform: translateY(-1px);
+}
 
 /* small helper for inline actions */
-.card .actions { margin-top:12px }
-
-/* Flash messages */
-.flash-success { background:#e6ffef; color:#04653a; padding:12px 14px; border-radius:8px; margin-bottom:14px; box-shadow: 0 6px 18px rgba(4,101,58,0.04) }
-
-/* Responsive: make name/email on same row for wide screens */
-.contact-form .row { display:block }
-@media (min-width:720px) {
-    .contact-form .row { display:flex; gap:12px }
-    .contact-form .row .field { flex:1 }
+.card .actions {
+    margin-top: 12px;
 }
 
-@media (max-width:600px){ .container{ padding:0 12px } }
+/* Flash messages */
+.flash-success {
+    background: #e6ffef;
+    color: #04653a;
+    padding: 12px 14px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    box-shadow: 0 6px 18px rgba(4, 101, 58, 0.04);
+}
 
+/* Responsive: make name/email on same row for wide screens */
+.contact-form .row {
+    display: block;
+}
+@media (min-width: 720px) {
+    .contact-form .row {
+        display: flex;
+        gap: 12px;
+    }
+    .contact-form .row .field {
+        flex: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 0 12px;
+    }
+}
