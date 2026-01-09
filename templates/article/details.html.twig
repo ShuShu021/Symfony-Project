@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.titre }}{% endblock %}
+
+{% block body %}
     <h1>{{ article.titre }}</h1>
-    <img src="{{ article.img }}" alt="">
+    {% if article.img %}
+        <img src="{{ article.img }}" alt="">
+    {% endif %}
 
     <p>Ecrit le {{ article.date|date('d/m/Y') }}</p>
     <p>{{ article.contenu }}</p>
@@ -18,5 +17,4 @@
         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
         <button class="btn btn-danger">Supprimer</button>
     </form>
-</body>
-</html>
+{% endblock %}

@@ -1,30 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Document</title>
+{% extends 'base.html.twig' %}
 
-		<script src="https://cdn.tailwindcss.com"></script>
-	</head>
-	<body>
-		<div class="grid grid-cols-2 gap-8 container mx-auto p-16">
-			{% for a in articles %}
-				<div class="border rounded shadow-lg p-4">
-					<h2><a href="{{ path('app_article_details', {'id': a.id}) }}">{{ a.titre }}</a></h2>
-					<p>Ecrit le {{ a.date|date('d/m/Y') }}</p>
-					{% if a.img %}
-						<img src="{{ a.img }}" alt="" class="size-24 object-contain mb-2">
-					{% endif %}
-					<p class="mt-2">
-						<a class="btn btn-sm" href="{{ path('app_article_edit', {'id': a.id}) }}">Éditer</a>
-						<form method="post" action="{{ path('app_article_delete', {'id': a.id}) }}" style="display:inline" onsubmit="return confirm('Supprimer cet article ?');">
-							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ a.id) }}">
-							<button class="btn btn-sm btn-danger">Supprimer</button>
-						</form>
-					</p>
-				</div>
-			{% endfor %}
-		</div>
-	</body>
-</html>
+{% block stylesheets %}
+	{{ parent() }}
+	<script src="https://cdn.tailwindcss.com"></script>
+{% endblock %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+	<div class="grid grid-cols-2 gap-8 container mx-auto p-16">
+		{% for a in articles %}
+			<div class="border rounded shadow-lg p-4">
+				<h2><a href="{{ path('app_article_details', {'id': a.id}) }}">{{ a.titre }}</a></h2>
+				<p>Ecrit le {{ a.date|date('d/m/Y') }}</p>
+				{% if a.img %}
+					<img src="{{ a.img }}" alt="" class="size-24 object-contain mb-2">
+				{% endif %}
+				<p class="mt-2">
+					<a class="btn btn-sm" href="{{ path('app_article_edit', {'id': a.id}) }}">Éditer</a>
+					<form method="post" action="{{ path('app_article_delete', {'id': a.id}) }}" style="display:inline" onsubmit="return confirm('Supprimer cet article ?');">
+						<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ a.id) }}">
+						<button class="btn btn-sm btn-danger">Supprimer</button>
+					</form>
+				</p>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

@@ -6,13 +6,19 @@
     <h1>Contact</h1>
 
     {% for flash in app.flashes('success') %}
-        <div class="alert alert-success">{{ flash }}</div>
+        <div class="flash-success">{{ flash }}</div>
     {% endfor %}
 
-    {{ form_start(contactForm) }}
-        {{ form_row(contactForm.name) }}
-        {{ form_row(contactForm.email) }}
-        {{ form_row(contactForm.message) }}
-        <button class="btn">Envoyer</button>
+    {{ form_start(contactForm, {'attr': {'class': 'contact-form'}}) }}
+        <div class="row">
+            <div class="field">{{ form_row(contactForm.name) }}</div>
+            <div class="field">{{ form_row(contactForm.email) }}</div>
+        </div>
+
+        <div class="field">{{ form_row(contactForm.message) }}</div>
+
+        <div class="actions">
+            <button class="btn btn-primary">Envoyer</button>
+        </div>
     {{ form_end(contactForm) }}
 {% endblock %}
