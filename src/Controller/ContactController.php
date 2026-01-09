@@ -22,9 +22,11 @@ final class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
+            $recipient = getenv('MAIL_TO') ?: 'b7.lavi@yahoo.com';
+
             $email = (new TemplatedEmail())
                 ->from(new Address($data['email'], $data['name']))
-                ->to(new Address('admin@example.com', 'Site Admin'))
+                ->to(new Address($recipient, 'Site Admin'))
                 ->subject('Nouveau message de contact')
                 ->htmlTemplate('emails/contact_email.html.twig')
                 ->context(['data' => $data]);
